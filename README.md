@@ -4,6 +4,17 @@ A new Flutter project.
 
 ## Getting Started
 
+To get started with this app, create `app_config/config.json`.
+In this file, write the configuration like this:
+```json
+{
+    "api_config": {
+        "api_key": "API_KEY"
+    }
+}
+```
+`API_KEY` is the api key that provided by TMDB API.
+
 This project is a starting point for a Flutter application.
 
 A few resources to get you started if this is your first Flutter project:
