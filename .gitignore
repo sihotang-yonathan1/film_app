@@ -45,3 +45,4 @@ app.*.map.json
 
 # ignore api config in app_config/config.json
 /app_config/config.json
+app_config/config.json
