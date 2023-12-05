@@ -133,49 +133,41 @@ class _MovieTestPageState extends State<MovieTestPage> {
                             context,
                             'Popular (Movies)',
                             snapshot.data!.results
-                                .map((e) => Material(
-                                    child: Material(
-                                        child: FittedBox(
-                                            fit: BoxFit.cover,
-                                            child: Padding(
-                                                padding:
-                                                    const EdgeInsets.symmetric(
-                                                        horizontal: 2,
-                                                        vertical: 15),
-                                                child: Column(children: [
-                                                  Image.network(
-                                                    'https://image.tmdb.org/t/p/original${e.posterPath}',
-                                                    width: 200,
-                                                    height: 200,
-                                                  ),
-                                                  FittedBox(
-                                                      fit: BoxFit.scaleDown,
-                                                      child: Text(
-                                                        e.title,
-                                                        style: TextStyle(
-                                                            fontWeight:
-                                                                FontWeight
-                                                                    .w600),
-                                                      )),
-                                                  Row(children: [
-                                                    Icon(Icons.star,
-                                                        color: Colors.amber),
-                                                    Text(e.voteAverage
-                                                        .toString())
-                                                  ]),
-                                                  ElevatedButton(
-                                                      onPressed: () =>
-                                                          Navigator.push(
-                                                              context,
-                                                              MaterialPageRoute(
-                                                                builder: (context) =>
-                                                                    movie_detail_page.MovieDetailspage(
-                                                                        movieId:
-                                                                            e.id),
-                                                              )),
-                                                      child:
-                                                          const Text('Details'))
-                                                ]))))))
+                                .map((e) => FittedBox(
+                                    fit: BoxFit.cover,
+                                    child: Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 2, vertical: 15),
+                                        child: Column(children: [
+                                          Image.network(
+                                            'https://image.tmdb.org/t/p/original${e.posterPath}',
+                                            width: 200,
+                                            height: 200,
+                                          ),
+                                          FittedBox(
+                                              fit: BoxFit.scaleDown,
+                                              child: Text(
+                                                e.title,
+                                                style: TextStyle(
+                                                    fontWeight:
+                                                        FontWeight.w600),
+                                              )),
+                                          Row(children: [
+                                            Icon(Icons.star,
+                                                color: Colors.amber),
+                                            Text(e.voteAverage.toString())
+                                          ]),
+                                          ElevatedButton(
+                                              onPressed: () => Navigator.push(
+                                                  context,
+                                                  MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        movie_detail_page
+                                                            .MovieDetailspage(
+                                                                movieId: e.id),
+                                                  )),
+                                              child: const Text('Details'))
+                                        ]))))
                                 .toList(),
                             '')),
                   ]));
