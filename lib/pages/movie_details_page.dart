@@ -41,107 +41,115 @@ class _MovieDetailsPageState extends State<MovieDetailspage> {
             if (snapshot.hasData) {
               print(snapshot.data);
               return SafeArea(
-                  child: ListView(
-                children: [
-                  Center(
-                      child:
-                          Stack(alignment: Alignment.center, children: <Widget>[
-                    Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
+                  child: CustomScrollView(slivers: [
+                SliverList(
+                    delegate: SliverChildListDelegate(
+                  [
+                    Center(
+                        child: Stack(
+                            alignment: Alignment.center,
+                            children: <Widget>[
+                          Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Container(
+                                  color: Colors.black54,
+                                  child: Opacity(
+                                    opacity: 0.1,
+                                    child: Image.network(
+                                      'https://image.tmdb.org/t/p/original${snapshot.data!.posterPath}',
+                                      fit: BoxFit.fill,
+                                    ),
+                                  ),
+                                )
+                              ]),
                           Container(
-                            color: Colors.black54,
-                            child: Opacity(
-                              opacity: 0.1,
-                              child: Image.network(
-                                'https://image.tmdb.org/t/p/original${snapshot.data!.posterPath}',
-                                fit: BoxFit.fill,
-                              ),
+                            margin: const EdgeInsets.only(bottom: 5),
+                            child: Column(
+                              children: [
+                                Column(children: [
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Image.network(
+                                      'https://image.tmdb.org/t/p/original${snapshot.data!.posterPath}',
+                                      width: 300,
+                                      height: 300,
+                                    ),
+                                  ),
+                                  Column(children: [
+                                    Text(
+                                      '${snapshot.data!.title} (${snapshot.data!.releaseDate.year})',
+                                      style: const TextStyle(
+                                          fontWeight: FontWeight.w600,
+                                          fontSize: 35,
+                                          color: Colors.white),
+                                    ),
+                                    Padding(
+                                        padding: EdgeInsets.only(bottom: 20),
+                                        child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: [
+                                              Container(
+                                                  margin: const EdgeInsets
+                                                      .symmetric(
+                                                      horizontal: 10),
+                                                  child: Row(children: [
+                                                    const Icon(
+                                                      Icons.star,
+                                                      color: Colors.amber,
+                                                    ),
+                                                    Text(
+                                                      snapshot.data!.averageVote
+                                                          .toStringAsFixed(1),
+                                                      style: TextStyle(
+                                                          color: Colors.white),
+                                                    ),
+                                                  ])),
+                                              Container(
+                                                  margin: const EdgeInsets
+                                                      .symmetric(
+                                                      horizontal: 10),
+                                                  child: Row(children: [
+                                                    const Icon(
+                                                      Icons.access_time,
+                                                      color: Colors.white60,
+                                                    ),
+                                                    Text(
+                                                        getTimeString(snapshot
+                                                            .data!
+                                                            .movieDuration),
+                                                        style: const TextStyle(
+                                                            color:
+                                                                Colors.white))
+                                                  ]))
+                                            ])),
+                                  ])
+                                ]),
+                              ],
                             ),
-                          )
-                        ]),
+                          ),
+                        ])),
                     Container(
-                      margin: const EdgeInsets.only(bottom: 5),
+                      alignment: Alignment.centerLeft,
                       child: Column(
                         children: [
-                          Column(children: [
-                            Padding(
+                          const Text(
+                            'Overview',
+                            style: TextStyle(
+                                fontWeight: FontWeight.w600, fontSize: 20),
+                          ),
+                          Padding(
                               padding: const EdgeInsets.all(8.0),
-                              child: Image.network(
-                                'https://image.tmdb.org/t/p/original${snapshot.data!.posterPath}',
-                                width: 300,
-                                height: 300,
-                              ),
-                            ),
-                            Column(children: [
-                              Text(
-                                '${snapshot.data!.title} (${snapshot.data!.releaseDate.year})',
-                                style: const TextStyle(
-                                    fontWeight: FontWeight.w600,
-                                    fontSize: 35,
-                                    color: Colors.white),
-                              ),
-                              Padding(
-                                  padding: EdgeInsets.only(bottom: 20),
-                                  child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        Container(
-                                            margin: const EdgeInsets.symmetric(
-                                                horizontal: 10),
-                                            child: Row(children: [
-                                              const Icon(
-                                                Icons.star,
-                                                color: Colors.amber,
-                                              ),
-                                              Text(
-                                                snapshot.data!.averageVote
-                                                    .toStringAsFixed(1),
-                                                style: TextStyle(
-                                                    color: Colors.white),
-                                              ),
-                                            ])),
-                                        Container(
-                                            margin: const EdgeInsets.symmetric(
-                                                horizontal: 10),
-                                            child: Row(children: [
-                                              const Icon(
-                                                Icons.access_time,
-                                                color: Colors.white60,
-                                              ),
-                                              Text(
-                                                  getTimeString(snapshot
-                                                      .data!.movieDuration),
-                                                  style: const TextStyle(
-                                                      color: Colors.white))
-                                            ]))
-                                      ])),
-                            ])
-                          ]),
+                              child: Text(snapshot.data!.description)),
+                          // Text(widget.movieId.toString())
                         ],
                       ),
                     ),
-                  ])),
-                  Container(
-                    alignment: Alignment.centerLeft,
-                    child: Column(
-                      children: [
-                        const Text(
-                          'Overview',
-                          style: TextStyle(
-                              fontWeight: FontWeight.w600, fontSize: 20),
-                        ),
-                        Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(snapshot.data!.description)),
-                        // Text(widget.movieId.toString())
-                      ],
-                    ),
-                  ),
-                ],
-              ));
+                  ],
+                ))
+              ]));
             } else if (snapshot.hasError) {
               print('Error in async/await: FutureBuilder - MovieDetails');
               print(snapshot.error.toString());
