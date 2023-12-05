@@ -133,41 +133,7 @@ class _MovieTestPageState extends State<MovieTestPage> {
                             context,
                             'Popular (Movies)',
                             snapshot.data!.results
-                                .map((e) => FittedBox(
-                                    fit: BoxFit.cover,
-                                    child: Padding(
-                                        padding: const EdgeInsets.symmetric(
-                                            horizontal: 2, vertical: 15),
-                                        child: Column(children: [
-                                          Image.network(
-                                            'https://image.tmdb.org/t/p/original${e.posterPath}',
-                                            width: 200,
-                                            height: 200,
-                                          ),
-                                          FittedBox(
-                                              fit: BoxFit.scaleDown,
-                                              child: Text(
-                                                e.title,
-                                                style: TextStyle(
-                                                    fontWeight:
-                                                        FontWeight.w600),
-                                              )),
-                                          Row(children: [
-                                            Icon(Icons.star,
-                                                color: Colors.amber),
-                                            Text(e.voteAverage.toString())
-                                          ]),
-                                          ElevatedButton(
-                                              onPressed: () => Navigator.push(
-                                                  context,
-                                                  MaterialPageRoute(
-                                                    builder: (context) =>
-                                                        movie_detail_page
-                                                            .MovieDetailspage(
-                                                                movieId: e.id),
-                                                  )),
-                                              child: const Text('Details'))
-                                        ]))))
+                                .map((e) => FilmPreviewListItem(filmResult: e))
                                 .toList(),
                             '')),
                   ]));
@@ -178,5 +144,44 @@ class _MovieTestPageState extends State<MovieTestPage> {
                 }
               }),
         ]));
+  }
+}
+
+class FilmPreviewListItem extends StatelessWidget {
+  MoviePopularResult filmResult;
+  FilmPreviewListItem({super.key, required this.filmResult});
+
+  @override
+  Widget build(BuildContext context) {
+    return FittedBox(
+        fit: BoxFit.cover,
+        child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 2, vertical: 15),
+            child: Column(children: [
+              Image.network(
+                'https://image.tmdb.org/t/p/original${filmResult.posterPath}',
+                width: 200,
+                height: 200,
+              ),
+              FittedBox(
+                  fit: BoxFit.scaleDown,
+                  child: Text(
+                    filmResult.title,
+                    style: TextStyle(fontWeight: FontWeight.w600),
+                  )),
+              Row(children: [
+                Icon(Icons.star, color: Colors.amber),
+                Text(filmResult.voteAverage.toString())
+              ]),
+              ElevatedButton(
+                  onPressed: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            movie_detail_page.MovieDetailspage(
+                                movieId: filmResult.id),
+                      )),
+                  child: const Text('Details'))
+            ])));
   }
 }
