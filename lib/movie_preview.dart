@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:ffi';
 
 import 'package:film_app/util/network.dart';
 
@@ -51,15 +50,12 @@ class MoviePopularPage {
 }
 
 Future<MoviePopularPage> fetchFilmPopularPage({type = 'movie'}) async {
-  // const String API_BASE_URL = 'https://api.themoviedb.org/3/discover/';
-  // final response = await http.get(Uri.parse(
-  //     '${API_BASE_URL}${type}?sort_by=popularity.desc&api_key=${API_KEY}'));
   final response = await fetchApiCall('/discover/$type');
   if (response.statusCode == 200) {
     // print(response.body);
-    var temp_data = MoviePopularPage.fromJson(
+    var tempData = MoviePopularPage.fromJson(
         jsonDecode(response.body) as Map<String, dynamic>);
-    return temp_data;
+    return tempData;
   } else {
     // TODO: use logging instead of print statement
     print(response.statusCode);
