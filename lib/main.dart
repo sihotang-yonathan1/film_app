@@ -274,7 +274,12 @@ class _MovieTestPageState extends State<MovieTestPage> {
                                                                 FontWeight
                                                                     .w600),
                                                       )),
-                                                  Text(e.id.toString()),
+                                                  Row(children: [
+                                                    Icon(Icons.star,
+                                                        color: Colors.amber),
+                                                    Text(e.voteAverage
+                                                        .toString())
+                                                  ]),
                                                   ElevatedButton(
                                                       onPressed: () =>
                                                           Navigator.push(

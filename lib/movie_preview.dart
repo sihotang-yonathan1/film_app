@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:ffi';
 
 import 'package:film_app/util/network.dart';
 
@@ -9,12 +10,14 @@ class MoviePopularResult {
   final int id;
   final String title;
   final String posterPath;
+  final num voteAverage;
 
   const MoviePopularResult(
       {required this.isAdult,
       required this.id,
       required this.title,
-      required this.posterPath});
+      required this.posterPath,
+      required this.voteAverage});
 
   factory MoviePopularResult.fromJson(Map<String, dynamic> json) {
     // print(json);
@@ -22,7 +25,8 @@ class MoviePopularResult {
         isAdult: json['adult'],
         id: json['id'],
         title: json['title'] ?? json['name'],
-        posterPath: json['poster_path']);
+        posterPath: json['poster_path'],
+        voteAverage: json['vote_average']);
   }
 }
 
