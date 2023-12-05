@@ -153,35 +153,38 @@ class FilmPreviewListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FittedBox(
-        fit: BoxFit.cover,
-        child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 2, vertical: 15),
-            child: Column(children: [
-              Image.network(
-                'https://image.tmdb.org/t/p/original${filmResult.posterPath}',
-                width: 200,
-                height: 200,
-              ),
-              FittedBox(
-                  fit: BoxFit.scaleDown,
-                  child: Text(
-                    filmResult.title,
-                    style: TextStyle(fontWeight: FontWeight.w600),
-                  )),
-              Row(children: [
-                Icon(Icons.star, color: Colors.amber),
-                Text(filmResult.voteAverage.toString())
-              ]),
-              ElevatedButton(
-                  onPressed: () => Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) =>
-                            movie_detail_page.MovieDetailspage(
-                                movieId: filmResult.id),
+    return SizedBox(
+        height: 200,
+        child: FittedBox(
+            fit: BoxFit.cover,
+            child: Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 2, vertical: 15),
+                child: Column(children: [
+                  Image.network(
+                    'https://image.tmdb.org/t/p/original${filmResult.posterPath}',
+                    width: 200,
+                    height: 200,
+                  ),
+                  FittedBox(
+                      fit: BoxFit.scaleDown,
+                      child: Text(
+                        filmResult.title,
+                        style: TextStyle(fontWeight: FontWeight.w600),
                       )),
-                  child: const Text('Details'))
-            ])));
+                  Row(children: [
+                    Icon(Icons.star, color: Colors.amber),
+                    Text(filmResult.voteAverage.toString())
+                  ]),
+                  ElevatedButton(
+                      onPressed: () => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) =>
+                                movie_detail_page.MovieDetailspage(
+                                    movieId: filmResult.id),
+                          )),
+                      child: const Text('Details'))
+                ]))));
   }
 }
