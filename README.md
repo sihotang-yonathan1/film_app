@@ -17,6 +17,9 @@ Pada file ini, dapat ditulis konfigurasi seperti ini:
 ```
 `API_KEY` merupakan API KEY yang diberikan oleh TMDB.
 
+## Link Video
+Youtube: https://youtu.be/kYeUck0_BfE
+
 ## Pengembang
 Aplikasi ini dibuat oleh Kelompok Zeus Thunderbolts (Kelompok 1)  
 
