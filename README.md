@@ -1,11 +1,13 @@
 # film_app
 
-A new Flutter project.
+Aplikasi ini merupakan aplikasi mobile yang bertujuan untuk menampilkan film-film yang sedang populer saat ini. Aplikasi ini menggunakan data yang sumbernya diambil dari TMDB API.  
+Aplikasi ini dibuat dengan menggunakan Flutter dan menggunakan bahasa Dart.
+
 
 ## Getting Started
 
-To get started with this app, create `app_config/config.json`.
-In this file, write the configuration like this:
+Untuk dapat menggunakan aplikasi ini, buat `app_config/config.json`.
+Pada file ini, dapat ditulis konfigurasi seperti ini:
 ```json
 {
     "api_config": {
@@ -13,15 +15,13 @@ In this file, write the configuration like this:
     }
 }
 ```
-`API_KEY` is the api key that provided by TMDB API.
+`API_KEY` merupakan API KEY yang diberikan oleh TMDB.
 
-This project is a starting point for a Flutter application.
+## Pengembang
+Aplikasi ini dibuat oleh Kelompok Zeus Thunderbolts (Kelompok 1)  
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Anggota Kelompok:
+- GABRIEL MOODY WAWORUNDENG (210211060052)
+- VICI (210211060182)
+- YONATHAN HOT GABE SIHOTANG (220211060127)
+- CLIFFORD DANIEL MANDAGI (220211060135)
